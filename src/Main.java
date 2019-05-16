@@ -17,6 +17,12 @@ public class Main {
                 System.out.println("Your input was invalid, try again.");
             }
         }
+        if (playersChoice.equals("circle")) {
+            playersChoice = "O";
+        }
+        else {
+            playersChoice = "X";
+        }
         Player player = new Player(playersChoice);
         Board board = new Board(3);
         board.generateBoard();
@@ -25,16 +31,18 @@ public class Main {
         while (gameLoop){
             System.out.println("This is the board currently (press q to quit)");
             board.printBoard();
-            System.out.println(String.format("Where do you want to place your %s?  (first the row, after that a space and the column) ex: 1 3, places it in the first row in the third column", player.getChoice()));
+            System.out.println(String.format("Where do you want to place your %s?  (first the row, after that a space and the column) ex: 1 3," +
+                    "places it in the first row in the third column\n or press q to quit", player.getChoice()));
             String move = scanner.nextLine();
             if(move.equals("q")){
                 gameLoop = false;
             }
-            else if(move.length() > 3 || move.length() < 3 || )
-            {
-                System.out.println("Invalid move");
+            else if(board.checkForValidMove(move)){
+                board.insertMove(move, player.getChoice());
             }
-            board.insertMove(move);
+            else{
+                System.out.println("Invalid command");
+            }
         }
         System.out.println("Thanks for playing!");
     }

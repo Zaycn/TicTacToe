@@ -35,21 +35,26 @@ public class Board {
         }
     }
 
-    public void insertMove(String move){
-
+    public void insertMove(String move, String symbol){
+        this.validMoves.remove(move);
+        move = move.replace(" ", "");
+        this.board[Integer.parseInt(move.substring(0, 1)) - 1][Integer.parseInt(move.substring(1,2)) - 1] = String.format("[%s]", symbol);
     }
 
     public boolean checkForValidMove(String move){
-
-
-        return true;
+        if (this.validMoves.contains(move)) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private void generateValidMoves(){
-        int numOfColumns = this.size;
-        while(numOfColumns != 0){
-            
-            numOfColumns--;
+        for (int i = 1; i <= this.size; i++) {
+            for (int j = 1; j <= this.size ; j++) {
+                this.validMoves.add(i + " " + j);
+            }
         }
     }
 }
