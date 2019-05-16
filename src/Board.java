@@ -50,6 +50,15 @@ public class Board {
         }
     }
 
+    public List<String> getValidMoves(){
+        return this.validMoves;
+    }
+
+    public boolean checkForWin(){
+        
+        return true;
+    }
+
     private void generateValidMoves(){
         for (int i = 1; i <= this.size; i++) {
             for (int j = 1; j <= this.size ; j++) {

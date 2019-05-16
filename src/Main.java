@@ -6,6 +6,7 @@ public class Main {
         boolean hasPicked = false;
         Scanner scanner = new Scanner(System.in);
         String playersChoice = "";
+        String aiChoice;
         while(!hasPicked)
         {
             playersChoice = scanner.nextLine();
@@ -19,11 +20,14 @@ public class Main {
         }
         if (playersChoice.equals("circle")) {
             playersChoice = "O";
+            aiChoice = "X";
         }
         else {
             playersChoice = "X";
+            aiChoice = "O";
         }
         Player player = new Player(playersChoice);
+        AI ai = new AI(aiChoice);
         Board board = new Board(3);
         board.generateBoard();
         boolean gameLoop = true;
@@ -39,6 +43,9 @@ public class Main {
             }
             else if(board.checkForValidMove(move)){
                 board.insertMove(move, player.getChoice());
+                String aiMove = ai.generateMove(board.getValidMoves());
+                board.insertMove(aiMove, ai.getChoice());
+                System.out.println("The ai played move " + aiMove);
             }
             else{
                 System.out.println("Invalid command");
