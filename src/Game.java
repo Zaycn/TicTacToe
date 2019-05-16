@@ -84,8 +84,4 @@ public class Game {
             return false;
         }
     }
-
-    private void handleInput(){
-
-    }
 }
