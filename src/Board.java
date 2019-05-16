@@ -54,9 +54,48 @@ public class Board {
         return this.validMoves;
     }
 
-    public boolean checkForWin(){
-        
-        return true;
+    // returns the symbol that won, if it has won.
+    // first checks for horizontal rows
+    // then for vertical rows
+    // then for diagonal rows
+    // needs refactoring because this is bad code
+    public String checkForWin(String symbolPlayer, String symbolAI){
+        symbolPlayer = "[" + symbolPlayer + "]";
+        symbolAI = "[" + symbolAI + "]";
+        for (int i = 0; i < this.size; i++) {
+            if (board[i][0].equals(symbolPlayer) && board[i][1].equals(symbolPlayer) && board[i][2].equals(symbolPlayer)){
+                return symbolPlayer;
+            }
+            else if (board[i][0].equals(symbolAI) && board[i][1].equals(symbolAI) && board[i][2].equals(symbolAI)){
+                return symbolAI;
+            }
+        }
+
+        for (int i = 0; i < this.size; i++) {
+            if (board[0][i].equals(symbolPlayer) && board[1][i].equals(symbolPlayer) && board[2][i].equals(symbolPlayer)){
+                return symbolPlayer;
+            }
+            else if (board[0][i].equals(symbolAI) && board[1][i].equals(symbolAI) && board[2][i].equals(symbolAI)){
+                return symbolAI;
+            }
+        }
+
+        if (board[0][0].equals(symbolPlayer) && board[1][1].equals(symbolPlayer) && board[2][2].equals(symbolPlayer)){
+            return symbolPlayer;
+        }
+        else if (board[0][0].equals(symbolAI) && board[1][1].equals(symbolAI) && board[2][2].equals(symbolAI)){
+            return symbolAI;
+        }
+
+        if (board[0][2].equals(symbolPlayer) && board[1][1].equals(symbolPlayer) && board[2][0].equals(symbolPlayer)){
+            return symbolPlayer;
+        }
+        else if (board[0][2].equals(symbolAI) && board[1][1].equals(symbolAI) && board[2][0].equals(symbolAI)){
+            return symbolAI;
+        }
+        else{
+            return "";
+        }
     }
 
     private void generateValidMoves(){
